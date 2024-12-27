@@ -146,7 +146,7 @@ public:
 	virtual Skulls_t getSkullType(const std::shared_ptr<Creature> &creature) {
 		return creature->getSkull();
 	}
-	void setSkull(Skulls_t newSkull);
+	virtual void setSkull(Skulls_t newSkull);
 	Direction getDirection() const {
 		return direction;
 	}

@@ -924,7 +924,7 @@ WeaponAction_t getWeaponAction(const std::string &strValue) {
 	return WEAPONACTION_NONE;
 }
 
-Skulls_t getSkullType(const std::string &strValue) {
+Skulls_t getSkulls(const std::string &strValue) {
 	const std::string tmpStrValue = asLowerCaseString(strValue);
 	if (tmpStrValue == "orange" || tmpStrValue == "6") {
 		return SKULL_ORANGE;

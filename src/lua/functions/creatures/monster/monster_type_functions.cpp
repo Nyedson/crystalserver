@@ -1390,35 +1390,25 @@ int MonsterTypeFunctions::luaMonsterTypeRace(lua_State* L) {
 int MonsterTypeFunctions::luaMonsterTypeSkull(lua_State* L) {
 	// get: monsterType:skull() set: monsterType:skull(skull)
 	const auto &monsterType = Lua::getUserdataShared<MonsterType>(L, 1);
-	std::string skull = Lua::getString(L, 2);
 	if (monsterType) {
 		if (lua_gettop(L) == 1) {
 			lua_pushnumber(L, monsterType->info.skull);
 		} else {
-			if (skull == "yellow") {
-				monsterType->info.skull = SKULL_YELLOW;
-			} else if (skull == "green") {
-				monsterType->info.skull = SKULL_GREEN;
-			} else if (skull == "white") {
-				monsterType->info.skull = SKULL_WHITE;
-			} else if (skull == "red") {
-				monsterType->info.skull = SKULL_RED;
-			} else if (skull == "black") {
-				monsterType->info.skull = SKULL_BLACK;
-			} else if (skull == "orange") {
-				monsterType->info.skull = SKULL_ORANGE;
-			} else {
-				g_logger().warn("[MonsterTypeFunctions::luaMonsterTypeSkull] - "
-				                "Unknown skull type {}",
-				                skull);
+			std::string skullName = Lua::getString(L, 2);
+			Skulls_t skullType = getSkulls(skullName);
+			if (!skullType) {
+				g_logger().warn("[MonsterTypeFunctions::luaMonsterTypeSkull] - Unknown skull type: {}", skullName);
 				lua_pushnil(L);
 				return 1;
 			}
+
+			monsterType->info.skull = skullType;
 			Lua::pushBoolean(L, true);
 		}
 	} else {
 		lua_pushnil(L);
 	}
+
 	return 1;
 }
 
