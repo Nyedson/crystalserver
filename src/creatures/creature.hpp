@@ -143,7 +143,7 @@ public:
 	virtual Skulls_t getSkull() const {
 		return skull;
 	}
-	virtual Skulls_t getSkullClient(const std::shared_ptr<Creature> &creature) {
+	virtual Skulls_t getSkullType(const std::shared_ptr<Creature> &creature) {
 		return creature->getSkull();
 	}
 	void setSkull(Skulls_t newSkull);

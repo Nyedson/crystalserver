@@ -3386,7 +3386,7 @@ void ProtocolGame::sendCreatureSkull(const std::shared_ptr<Creature> &creature) 
 	NetworkMessage msg;
 	msg.addByte(0x90);
 	msg.add<uint32_t>(creature->getID());
-	msg.addByte(player->getSkullClient(creature));
+	msg.addByte(player->getSkullType(creature));
 	writeToOutputBuffer(msg);
 }
 
@@ -6567,7 +6567,7 @@ void ProtocolGame::sendPartyCreatureSkull(const std::shared_ptr<Creature> &targe
 	NetworkMessage msg;
 	msg.addByte(0x90);
 	msg.add<uint32_t>(cid);
-	msg.addByte(player->getSkullClient(target));
+	msg.addByte(player->getSkullType(target));
 	writeToOutputBuffer(msg);
 }
 
@@ -7782,7 +7782,7 @@ void ProtocolGame::AddCreature(NetworkMessage &msg, const std::shared_ptr<Creatu
 
 	addCreatureIcon(msg, creature);
 
-	msg.addByte(player->getSkullClient(creature));
+	msg.addByte(player->getSkullType(creature));
 	msg.addByte(player->getPartyShield(otherPlayer));
 
 	if (!known) {

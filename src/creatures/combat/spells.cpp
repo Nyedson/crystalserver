@@ -635,7 +635,7 @@ bool Spell::playerRuneSpellCheck(const std::shared_ptr<Player> &player, const Po
 
 	if (aggressive && needTarget && topVisibleCreature && player->hasSecureMode()) {
 		const auto &targetPlayer = topVisibleCreature->getPlayer();
-		if (targetPlayer && targetPlayer != player && player->getSkullClient(targetPlayer) == SKULL_NONE && !Combat::isInPvpZone(player, targetPlayer)) {
+		if (targetPlayer && targetPlayer != player && player->getSkullType(targetPlayer) == SKULL_NONE && !Combat::isInPvpZone(player, targetPlayer)) {
 			player->sendCancelMessage(RETURNVALUE_TURNSECUREMODETOATTACKUNMARKEDPLAYERS);
 			g_game().addMagicEffect(player->getPosition(), CONST_ME_POFF);
 			return false;

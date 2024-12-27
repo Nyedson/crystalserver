@@ -624,7 +624,6 @@ using ShootTypeNames = phmap::flat_hash_map<std::string, ShootType_t>;
 using CombatTypeNames = phmap::flat_hash_map<CombatType_t, std::string, std::hash<int32_t>>;
 using AmmoTypeNames = phmap::flat_hash_map<std::string, Ammo_t>;
 using WeaponActionNames = phmap::flat_hash_map<std::string, WeaponAction_t>;
-using SkullNames = phmap::flat_hash_map<std::string, Skulls_t>;
 using ImbuementTypeNames = phmap::flat_hash_map<std::string, ImbuementTypes_t>;
 
 /**
@@ -860,16 +859,6 @@ WeaponActionNames weaponActionNames = {
 	{ "removecount", WEAPONACTION_REMOVECOUNT },
 };
 
-SkullNames skullNames = {
-	{ "black", SKULL_BLACK },
-	{ "green", SKULL_GREEN },
-	{ "none", SKULL_NONE },
-	{ "orange", SKULL_ORANGE },
-	{ "red", SKULL_RED },
-	{ "yellow", SKULL_YELLOW },
-	{ "white", SKULL_WHITE },
-};
-
 const ImbuementTypeNames imbuementTypeNames = {
 	{ "elemental damage", IMBUEMENT_ELEMENTAL_DAMAGE },
 	{ "life leech", IMBUEMENT_LIFE_LEECH },
@@ -936,10 +925,31 @@ WeaponAction_t getWeaponAction(const std::string &strValue) {
 }
 
 Skulls_t getSkullType(const std::string &strValue) {
-	const auto skullType = skullNames.find(strValue);
-	if (skullType != skullNames.end()) {
-		return skullType->second;
+	const std::string tmpStrValue = asLowerCaseString(strValue);
+	if (tmpStrValue == "orange" || tmpStrValue == "6") {
+		return SKULL_ORANGE;
 	}
+
+	if (tmpStrValue == "black" || tmpStrValue == "5") {
+		return SKULL_BLACK;
+	}
+
+	if (tmpStrValue == "red" || tmpStrValue == "4") {
+		return SKULL_RED;
+	}
+
+	if (tmpStrValue == "white" || tmpStrValue == "3") {
+		return SKULL_WHITE;
+	}
+
+	if (tmpStrValue == "green" || tmpStrValue == "2") {
+		return SKULL_GREEN;
+	}
+
+	if (tmpStrValue == "yellow" || tmpStrValue == "1") {
+		return SKULL_YELLOW;
+	}
+
 	return SKULL_NONE;
 }
 

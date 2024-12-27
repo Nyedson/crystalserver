@@ -716,7 +716,7 @@ public:
 	LightInfo getCreatureLight() const override;
 
 	Skulls_t getSkull() const override;
-	Skulls_t getSkullClient(const std::shared_ptr<Creature> &creature) override;
+	Skulls_t getSkullType(const std::shared_ptr<Creature> &creature) override;
 	int64_t getSkullTicks() const;
 	void setSkullTicks(int64_t ticks);
 

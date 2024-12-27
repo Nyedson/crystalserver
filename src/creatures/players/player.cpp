@@ -5664,7 +5664,7 @@ void Player::onAttackedCreature(const std::shared_ptr<Creature> &target) {
 			sendIcons();
 		}
 
-		if (getSkull() == SKULL_NONE && getSkullClient(targetPlayer) == SKULL_YELLOW) {
+		if (getSkull() == SKULL_NONE && getSkullType(targetPlayer) == SKULL_YELLOW) {
 			addAttacked(targetPlayer);
 			targetPlayer->sendCreatureSkull(static_self_cast<Player>());
 		} else if (!targetPlayer->hasAttacked(static_self_cast<Player>())) {
@@ -6217,7 +6217,7 @@ Skulls_t Player::getSkull() const {
 	return skull;
 }
 
-Skulls_t Player::getSkullClient(const std::shared_ptr<Creature> &creature) {
+Skulls_t Player::getSkullType(const std::shared_ptr<Creature> &creature) {
 	if (!creature || g_game().getWorldType() != WORLD_TYPE_PVP) {
 		return SKULL_NONE;
 	}
@@ -6244,7 +6244,7 @@ Skulls_t Player::getSkullClient(const std::shared_ptr<Creature> &creature) {
 			return SKULL_GREEN;
 		}
 	}
-	return Creature::getSkullClient(creature);
+	return Creature::getSkullType(creature);
 }
 
 int64_t Player::getSkullTicks() const {

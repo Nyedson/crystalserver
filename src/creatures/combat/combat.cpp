@@ -251,7 +251,7 @@ ReturnValue Combat::canTargetCreature(const std::shared_ptr<Player> &player, con
 			return RETURNVALUE_YOUMAYNOTATTACKTHISPLAYER;
 		}
 
-		if (player->hasSecureMode() && !Combat::isInPvpZone(player, target) && player->getSkullClient(target->getPlayer()) == SKULL_NONE) {
+		if (player->hasSecureMode() && !Combat::isInPvpZone(player, target) && player->getSkullType(target->getPlayer()) == SKULL_NONE) {
 			return RETURNVALUE_TURNSECUREMODETOATTACKUNMARKEDPLAYERS;
 		}
 	}
@@ -311,7 +311,7 @@ bool Combat::isProtected(const std::shared_ptr<Player> &attacker, const std::sha
 		return true;
 	}
 
-	if (attacker->getSkull() == SKULL_BLACK && attacker->getSkullClient(target) == SKULL_NONE) {
+	if (attacker->getSkull() == SKULL_BLACK && attacker->getSkullType(target) == SKULL_NONE) {
 		return true;
 	}
 

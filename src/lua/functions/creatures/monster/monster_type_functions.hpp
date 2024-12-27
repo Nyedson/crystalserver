@@ -116,6 +116,7 @@ private:
 	static int luaMonsterTypeManaCost(lua_State* L);
 	static int luaMonsterTypeBaseSpeed(lua_State* L);
 	static int luaMonsterTypeLight(lua_State* L);
+	static int luaMonsterTypeSkull(lua_State* L);
 
 	static int luaMonsterTypeStaticAttackChance(lua_State* L);
 	static int luaMonsterTypeTargetDistance(lua_State* L);
